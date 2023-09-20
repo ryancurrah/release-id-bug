@@ -1,0 +1,35 @@
+snapshot:
+    name_template: '{{ .Version }}'
+checksum:
+    name_template: '{{ .ProjectName }}_checksums.txt'
+    algorithm: sha256
+changelog:
+    skip: true
+archives:
+    - id: binary
+      format: binary
+release:
+    disable: true
+builds:
+  - id: cmdA
+    main: ./cmdA/main.go
+    flags:
+      - -trimpath
+    binary: cmdA
+    goos:
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLED=0
+  - id: cmdB
+    main: ./cmdB/main.go
+    flags:
+      - -trimpath
+    binary: cmdB
+    goos:
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLED=0
